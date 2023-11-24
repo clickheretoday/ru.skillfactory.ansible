@@ -1,0 +1,7 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: run mysql
+      ansible.builtin.service:
+        name: mysql
+        state: started
