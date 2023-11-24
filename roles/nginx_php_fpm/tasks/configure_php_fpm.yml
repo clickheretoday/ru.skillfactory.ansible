@@ -1,6 +1,11 @@
 ---
+- name: ensure /opt/nginx/ansible directory exists
+  file:
+    path: /opt/nginx/ansible
+    state: directory
+    mode: 0755
 - name: copy php info file
   template:
     src: php_info.php.j2
-    dest: /var/www/html/index.php
+    dest: /opt/nginx/ansible/index.php
   notify: reload php-fpm
