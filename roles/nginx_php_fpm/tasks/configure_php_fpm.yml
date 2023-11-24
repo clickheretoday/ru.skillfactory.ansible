@@ -1,0 +1,6 @@
+---
+- name: copy php info file
+  template:
+    src: php_info.php.j2
+    dest: /var/www/html/index.php
+  notify: reload php-fpm

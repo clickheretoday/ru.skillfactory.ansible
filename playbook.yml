@@ -1,0 +1,22 @@
+- hosts: all
+  become: true
+  roles:
+    - dnsmasq
+    - nginx_php_fpm
+  tasks:
+    - name: create superusers group
+      group:
+        name: superusers
+        state: present
+    - name: add user2 and user3 to superusers group
+      user:
+        name: "{{ item }}"
+        groups: superusers
+      loop:
+        - user2
+        - user3
+    - name: configure sudoers for superusers group
+      lineinfile:
+        path: /etc/sudoers
+        line: '%superusers ALL=(ALL:ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
