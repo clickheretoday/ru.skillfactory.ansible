@@ -1,3 +1,3 @@
 # ru.skillfactory.ansible
 
-- Практикум (HW-03)
+- Проектная работа 6 (HW-03)
