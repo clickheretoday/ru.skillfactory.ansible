@@ -1,0 +1,4 @@
+---
+# tasks file for nginx_php_fpm
+- import_tasks: install_php_fpm.yml
+- import_tasks: configure_php_fpm.yml

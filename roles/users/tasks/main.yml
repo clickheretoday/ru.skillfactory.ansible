@@ -1,0 +1,22 @@
+---
+# tasks file for users
+- name: add new user with ssh key
+  user:
+    name: "{{ username }}"
+    password: "{{ password | password_hash('sha512') }}"
+    shell: /bin/bash
+    createhome: yes
+
+- name: ensure ssh directory exists for the user
+  file:
+    path: "/home/{{ username }}/.ssh"
+    state: directory
+    mode: 0700
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: add ssh key to authorized_keys
+  authorized_key:
+    user: "{{ username }}"
+    key: "{{ ssh_key }}"
+    state: present
