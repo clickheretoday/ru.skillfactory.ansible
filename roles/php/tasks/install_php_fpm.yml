@@ -1,9 +1,0 @@
----
-- name: install php and php-fpm
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - php-fpm
-    - php-cli
-  notify: reload php-fpm
